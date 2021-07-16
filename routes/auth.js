@@ -237,4 +237,77 @@ router.post('/patientDischarge/delete',(req,res)=>{
     }
   })
 })
+router.post('/hospitalQuery/q1',(req,res)=>{
+  const {p_id}=req.body
+
+  db.query("SELECT P.p_name,P.p_age,H.ward_type from doctor D,patient P,hospitaladmission H where H.p_id=P.p_id and H.doc_id=D.doc_id and H.p_id=?",[p_id],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    }
+    else{
+      res.status(200).json({result})
+    }
+  })
+})
+router.post('/hospitalQuery/q2',(req,res)=>{
+  const {doc_name}=req.body
+
+  db.query("SELECT N.n_id,N.n_name from nurse N,doctor D where N.doc_id=D.doc_id and D.doc_name=?",[doc_name],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    }
+    else{
+      res.status(200).json({result})
+    }
+  })
+})
+router.post('/hospitalQuery/q3',(req,res)=>{
+  const {p_id}=req.body
+
+  db.query("SELECT M.ms_id,M.ms_name,D.doc_name from doctor D,patient P,hospitaladmission H,medicalstore M where H.p_id=P.p_id and M.ms_id=H.ms_id and D.doc_id=H.doc_id and P.p_id=?",[p_id],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    }
+    else{
+      res.status(200).json({result})
+    }
+  })
+})
+router.get('/hospitalQuery/q4',(req,res)=>{
+ 
+
+  db.query("SELECT h.ward_type,count(*) as no_of_patients from hospitaladmission h group by h.ward_type",(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    }
+    else{
+      res.status(200).json({result})
+    }
+  })
+})
+router.get('/hospitalQuery/q5',(req,res)=>{
+
+
+  db.query("SELECT p.p_id,p.p_name from patientdischarge p where p.total_cost in (select min(total_cost) from patientdischarge)",(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    }
+    else{
+      res.status(200).json({result})
+    }
+  })
+})
+router.get('/hospitalQuery/q6',(req,res)=>{
+  
+
+  db.query("SELECT d.doc_id,d.doc_name from doctor d where d.doc_age>40 and d.rating=5;",(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    }
+    else{
+      res.status(200).json({result})
+    }
+  })
+})
+
 module.exports=router

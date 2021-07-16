@@ -64,7 +64,15 @@ function Landing() {
          </div>
           </div>
         </div>
-       
+       <div className="col-12 hospitalCol">
+       <div className="hospitalBox bg-dark">
+          <div className="text-center">
+           <h3>Hospital Queries</h3>
+           <i className="fas fa-hospital hospitalLogoIcon"></i><br />
+           <a href="/hospitalQuery" className="btn hospitalBtn">Explore</a>
+         </div>
+          </div>
+       </div>
       </div>
      
     </div>

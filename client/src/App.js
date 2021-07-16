@@ -8,6 +8,7 @@ import Nurse from './components/nurse/Nurse'
 import MedicalStore from './components/medicalStore/MedicalStore'
 import PatientDischarge from './components/patientDischarge/PatientDischarge'
 import HospitalAdmission from './components/hospitalAdmission/HospitalAdmission'
+import HospitalQuery from './components/hospitalQueries/HospitalQuery'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/medicalStore" exact component={MedicalStore}/>
       <Route path="/patientDischarge" exact component={PatientDischarge}/>
       <Route path="/hospitalAdmission" exact component={HospitalAdmission}/>
+      <Route path="/hospitalQuery" exact component={HospitalQuery}/>
       </Router>
     </div>
   )
