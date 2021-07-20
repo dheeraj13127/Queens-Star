@@ -1,4 +1,4 @@
-import {GET_DOCTOR_DATA,GET_HOSPITAL_ADMISSION_DATA,GET_MEDICAL_STORE_DATA,GET_NURSE_DATA,GET_PATIENT_DATA,GET_PATIENT_DISCHARGE_DATA,INSERT_DOCTOR_DATA,INSERT_HOSPITAL_ADMISSION_DATA,INSERT_MEDICAL_STORE_DATA,INSERT_NURSE_DATA,INSERT_PATIENT_DATA,INSERT_PATIENT_DISCHARGE_DATA,GET_HOSPITAL_QUERY_1,GET_HOSPITAL_QUERY_2,GET_HOSPITAL_QUERY_3,GET_HOSPITAL_QUERY_4,GET_HOSPITAL_QUERY_5,GET_HOSPITAL_QUERY_6} from '../constants/constants'
+import {GET_DOCTOR_DATA,GET_HOSPITAL_ADMISSION_DATA,GET_MEDICAL_STORE_DATA,GET_NURSE_DATA,GET_PATIENT_DATA,GET_PATIENT_DISCHARGE_DATA,GET_HOSPITAL_QUERY_1,GET_HOSPITAL_QUERY_2,GET_HOSPITAL_QUERY_3,GET_HOSPITAL_QUERY_4,GET_HOSPITAL_QUERY_5,GET_HOSPITAL_QUERY_6} from '../constants/constants'
 import 'react-notifications/lib/notifications.css';
 import {NotificationManager} from 'react-notifications';
 import axios from 'axios'
@@ -157,5 +157,26 @@ export const getHospitalQuery6=()=>async(dispatch,getState)=>{
     type:GET_HOSPITAL_QUERY_6,
     payload:res.data.result
   }))
+  .catch(err=> NotificationManager.error(err.response.data.err.code, '', 2000))
+}
+
+export const updateNurseData=(data)=>async(dispatch,getState)=>{
+  await axios.post('http://localhost:5000/auths/nurse/update',data)
+  .then(res=>NotificationManager.success(res.data.message, '', 2000))
+  .catch(err=> NotificationManager.error(err.response.data.err.code, '', 2000))
+}
+export const updateHospitalAdmissionDocData=(data)=>async(dispatch,getState)=>{
+  await axios.post('http://localhost:5000/auths/hospitalAdmission/update_doc_id',data)
+  .then(res=>NotificationManager.success(res.data.message, '', 2000))
+  .catch(err=> NotificationManager.error(err.response.data.err.code, '', 2000))
+}
+export const updateHospitalAdmissionMsData=(data)=>async(dispatch,getState)=>{
+  await axios.post('http://localhost:5000/auths/hospitalAdmission/update_ms_id',data)
+  .then(res=>NotificationManager.success(res.data.message, '', 2000))
+  .catch(err=> NotificationManager.error(err.response.data.err.code, '', 2000))
+}
+export const updateHospitalAdmissionWardData=(data)=>async(dispatch,getState)=>{
+  await axios.post('http://localhost:5000/auths/hospitalAdmission/update_ward_type',data)
+  .then(res=>NotificationManager.success(res.data.message, '', 2000))
   .catch(err=> NotificationManager.error(err.response.data.err.code, '', 2000))
 }

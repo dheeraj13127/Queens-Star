@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../Navbar'
 import {useDispatch,useSelector} from 'react-redux'
-import { deleteNurseData, fetchNurseData,insertNurseData } from '../../redux/actions'
+import { deleteNurseData, fetchNurseData,insertNurseData,updateNurseData } from '../../redux/actions'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import Footer from '../Footer';
@@ -9,6 +9,9 @@ function Nurse() {
   const [auth,setAuth]=useState(false)
   const [input,setInput]=useState({n_id:"",n_name:"",n_age:"",doc_id:""})
   const [auth1,setAuth1]=useState(false)
+  const [auth2,setAuth2]=useState(false)
+  const [upDocId,setUpDocId]=useState("")
+  const [upNurseId,setUpNurseId]=useState("")
   const [delNurId,setDelNurId]=useState("")
   const dispatch=useDispatch()
   const nurseData=useSelector(state=>state.nurseData)
@@ -28,6 +31,14 @@ dispatch(fetchNurseData())
     e.preventDefault()
     dispatch(deleteNurseData({n_id:delNurId}))
     setDelNurId("")
+  }
+  const myFunc3=(e)=>{
+    e.preventDefault()
+    dispatch(updateNurseData({
+      doc_id:upDocId,
+      n_id:upNurseId}))
+    setUpDocId("")
+    setUpNurseId("")
   }
   console.log(nurseData,"hi")
   return (
@@ -74,7 +85,7 @@ dispatch(fetchNurseData())
         </div>
       </div>
       <div className="row mt-4">
-        <div className="col-12-col-lg-12">
+        <div className="col-12 col-lg-12">
         <div className="doctorCol bg-dark mt-4">
         <h5 className="text-center text-light">Click to insert data into table<span className="colSpanBold"> Nurse</span></h5>
         <div className="text-center mt-3">
@@ -112,6 +123,36 @@ dispatch(fetchNurseData())
         </div>
         </div>
       </div>
+      <div className="row mt-4">
+        <div className="col-12 col-lg-12">
+        <div className="doctorCol bg-dark mt-4">
+        <h5 className="text-center text-light">Click to Update data for the table<span className="colSpanBold"> Nurse</span></h5>
+        <div className="text-center mt-3">
+              <button className="btn dataSelectBtn" onClick={()=>setAuth2(!auth2)}>Click</button>
+       </div>
+         {auth2&&(
+            <div className="mt-3 formContainer">
+            <form onSubmit={myFunc3} autoComplete="off">
+              <div className="col-12 col-lg-4 col-md-4 offset-md-4">
+              <div className="input-group mb-3">
+              
+              <input type="text" className="form-control"  placeholder="Enter doc_id to be updated"  aria-describedby="basic-addon1" onChange={(e)=>setUpDocId(e.target.value)} value={upDocId} required/>
+            </div>
+              <div className="input-group mb-3">
+              
+              <input type="text" className="form-control"  placeholder="Enter n_id to be updated"  aria-describedby="basic-addon1" onChange={(e)=>setUpNurseId(e.target.value)} value={upNurseId} required/>
+            </div>
+              </div>
+                <div className="text-center">
+                  <button className="btn dataSelectBtn">Submit</button>
+                </div>
+            </form>
+              </div>
+         )}
+        </div>
+        </div>
+      </div>
+
       <div className="row mt-4">
         <div className="col-12-col-lg-12">
         <div className="doctorCol bg-dark mt-4">

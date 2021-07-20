@@ -8,19 +8,7 @@ const db=mysql.createPool({
   database:"hospital"
  })
 
-router.post('/create',(req,res)=>{
-  const name=req.body.name
- const age=req.body.age
- const id=req.body.id
- db.query("INSERT INTO patient (id,name,age) values (?,?,?)",[id,name,age],(err,result)=>{
-   if(err){
-     console.log(err)
-   } 
-   else{
-     console.log("values inserted")
-   }
- })
-})
+
 router.get('/doctor/data',(req,res)=>{
   db.query("SELECT * FROM doctor",(err,result)=>{
     if(err){
@@ -91,6 +79,7 @@ router.get('/hospitalAdmission/data',(req,res)=>{
 
 
 router.post('/doctor/insert',(req,res)=>{
+
   const {doc_id,doc_name,doc_age,doc_type,rating}=req.body
   
   db.query("INSERT INTO doctor (doc_id,doc_name,doc_age,doc_type,rating) values (?,?,?,?,?)",[doc_id,doc_name,doc_age,doc_type,rating],(err,result)=>{
@@ -310,4 +299,52 @@ router.get('/hospitalQuery/q6',(req,res)=>{
   })
 })
 
+router.post('/nurse/update',(req,res)=>{
+  const {doc_id,n_id}=req.body
+
+  db.query("UPDATE nurse SET doc_id=? WHERE n_id=?",[doc_id,n_id],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    } 
+    else{
+      res.status(200).json({message:"Successfully Updated"})
+    }
+  })
+})
+router.post('/hospitalAdmission/update_doc_id/',(req,res)=>{
+  const {doc_id,ha_id}=req.body
+
+  db.query("UPDATE hospitaladmission SET doc_id=? WHERE ha_id=?",[doc_id,ha_id],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    } 
+    else{
+      res.status(200).json({message:"Successfully Updated"})
+    }
+  })
+})
+router.post('/hospitalAdmission/update_ward_type/',(req,res)=>{
+  const {ward_type,ha_id}=req.body
+
+  db.query("UPDATE hospitaladmission SET ward_type=? WHERE ha_id=?",[ward_type,ha_id],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    } 
+    else{
+      res.status(200).json({message:"Successfully Updated"})
+    }
+  })
+})
+router.post('/hospitalAdmission/update_ms_id/',(req,res)=>{
+  const {ms_id,ha_id}=req.body
+
+  db.query("UPDATE hospitaladmission SET ms_id=? WHERE ha_id=?",[ms_id,ha_id],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    } 
+    else{
+      res.status(200).json({message:"Successfully Updated"})
+    }
+  })
+})
 module.exports=router
