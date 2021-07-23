@@ -3,6 +3,7 @@ import 'react-notifications/lib/notifications.css';
 import {NotificationManager} from 'react-notifications';
 import axios from 'axios'
 
+
 export const fetchDoctorData=()=>async(dispatch,getState)=>{
   await axios.get('http://localhost:5000/auths/doctor/data')
   .then(res=>dispatch({
@@ -179,4 +180,29 @@ export const updateHospitalAdmissionWardData=(data)=>async(dispatch,getState)=>{
   await axios.post('http://localhost:5000/auths/hospitalAdmission/update_ward_type',data)
   .then(res=>NotificationManager.success(res.data.message, '', 2000))
   .catch(err=> NotificationManager.error(err.response.data.err.code, '', 2000))
+}
+export const signUpAdmin=(data,history)=>async(dispatch,getState)=>{
+  await axios.post('http://localhost:5000/auths/admin/signUp',data)
+  .then(res=>{
+    NotificationManager.success(res.data.message, '', 2000)
+    setTimeout(()=>{
+      history.push('/signIn')
+    },2000)
+  })
+  .catch(err=> NotificationManager.error(err.response.data.err.code, '', 2000))
+}
+export const signInAdmin=(data,history)=>async(dispatch,getState)=>{
+
+  await axios.post('http://localhost:5000/auths/admin/signIn',data)
+  .then(res=>{
+    if(res.data.result.length>0){
+      localStorage.setItem("authSuccess",true)
+      NotificationManager.success("SignIn Success", '', 2000)
+      setTimeout(()=>{
+        history.push('/dashboard')
+      },2000)
+      
+    }
+  })
+  .catch(err=>NotificationManager.error(err.response.data.message, '', 2000))
 }

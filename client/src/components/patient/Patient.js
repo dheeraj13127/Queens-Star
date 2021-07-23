@@ -37,7 +37,7 @@ dispatch(fetchPatientData())
       <div className="row">
         <div className="col-12 col-lg-12">
           <div className="doctorCol bg-dark mt-4">
-            <h5 className="text-center text-light">Click to select all data from the table <span className="colSpanBold">Patient</span></h5>
+            <h5 className="text-center text-light">Click to retrieve data from the table <span className="colSpanBold">Patient</span></h5>
             <div className="text-center mt-3">
               <button className="btn dataSelectBtn" onClick={myFunc1}>Click</button>
             </div>

@@ -7,7 +7,8 @@ const db=mysql.createPool({
   password:"password",
   database:"hospital"
  })
-
+ const bcrypt=require('bcrypt')
+const salt=1
 
 router.get('/doctor/data',(req,res)=>{
   db.query("SELECT * FROM doctor",(err,result)=>{
@@ -345,6 +346,49 @@ router.post('/hospitalAdmission/update_ms_id/',(req,res)=>{
     else{
       res.status(200).json({message:"Successfully Updated"})
     }
+  })
+})
+router.post('/admin/signUp',(req,res)=>{
+  const {adminId,adminName,adminAge,adminEmail,password,password1}=req.body
+  bcrypt.hash(password,salt,(errs,hash)=>{
+    if(errs){
+      console.log(errs)
+    }
+    db.query("INSERT INTO hospitaladmin (admin_id,admin_name,admin_age,admin_email,admin_password,admin_password1) values (?,?,?,?,?,?)",[adminId,adminName,adminAge,adminEmail,hash,hash],(err,result)=>{
+      if(err){
+        res.status(400).json({err})
+      } 
+      else{
+        res.status(200).json({message:"SignUp Successfull"})
+      }
+    })
+  })
+ 
+})
+router.post('/admin/signIn',(req,res)=>{
+  const {adminEmail,password}=req.body
+ 
+
+  db.query("SELECT * FROM hospitaladmin WHERE admin_email=?;",[adminEmail],(err,result)=>{
+    if(err){
+      res.status(400).json({err})
+    } 
+    
+    if(result.length>0){
+      bcrypt.compare(password,result[0].admin_password,(err,resp)=>{
+        if(resp){
+          res.status(200).json({result})
+        }
+        else{
+          res.status(400).json({message:"Email or Password is incorrect !"})
+        }
+      
+      })
+    }
+    else{
+      res.status(400).json({message:"Admin doesnot exists !"})
+    }
+   
   })
 })
 module.exports=router

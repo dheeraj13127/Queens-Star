@@ -67,3 +67,36 @@ font-size: 25px;
   color: white;
   font-weight: 700;
 }
+.nav1Btn{
+  background-color: cadetblue;
+  color: white;
+}
+.nav1Btn:hover{
+  background-color: white;
+  color: cadetblue;
+}
+.landingCol1{
+  padding: 35px;
+}
+.landingNavbar{
+  border: 1px solid white;
+}
+.hospitalInfo{
+  font-weight: 600;
+  font-size: 15px;
+}
+.signUpContainer{
+  margin-top: 90px;
+}
+.signUpImg{
+  width: 380px;
+  height: 380px;
+  border-radius: 15px;
+}
+.formBox{
+  border: 1px solid white;
+  padding: 15px;
+}
+.signSpan{
+  color: cadetblue;
+}

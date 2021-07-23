@@ -1,6 +1,11 @@
 import React from 'react'
-
+import {useHistory} from 'react-router-dom'
 function Navbar() {
+  const history=useHistory()
+  const onSignOut=()=>{
+    localStorage.setItem("authSuccess",false)
+    history.push('/signIn')
+  }
   return (
     <div>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -10,14 +15,18 @@ function Navbar() {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
+      <ul className="navbar-nav p-2 me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link text-light"  href="/">Home</a>
+          <a className="nav-link text-light"  href="/dashboard">Home</a>
         </li>
         <li className="nav-item">
           <a className="nav-link text-light" href="/">About</a>
         </li>
       </ul>
+      <div className="d-flex">
+              <a className="btn btn-landing nav1Btn" href="/signIn" onClick={onSignOut}>SignOut</a>
+              
+       </div>
     </div>
   </div>
 </nav>

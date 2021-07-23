@@ -49,7 +49,7 @@ const myFunc5=()=>{
         <div className="row">
           <div className="col-12 col-lg-6">
             <div className="doctorCol bg-dark mt-4">
-            <h5 className="text-center text-light"><span className="colSpanBold">This query gives patient name, patient age and the ward type for the given patient id </span></h5>
+            <h5 className="text-center text-light"><span className="colSpanBold">This  gives patient name, patient age and the ward type for the given patient id </span></h5>
             <div className="text-center mt-3">
               <button className="btn dataSelectBtn" onClick={()=>setAuth(!auth)}>Click</button>
             </div>
@@ -101,7 +101,7 @@ const myFunc5=()=>{
 
           <div className="col-12 col-lg-6">
           <div className="doctorCol bg-dark mt-4">
-            <h5 className="text-center text-light"><span className="colSpanBold">This query gives nurse id and nurse name for the doctor assigned to them. </span></h5>
+            <h5 className="text-center text-light"><span className="colSpanBold">This  gives nurse id and nurse name for the doctor assigned to them. </span></h5>
             <div className="text-center mt-3">
               <button className="btn dataSelectBtn" onClick={()=>setAuth1(!auth1)}>Click</button>
             </div>
@@ -154,7 +154,7 @@ const myFunc5=()=>{
         <div className="row">
           <div className="col-12 col-lg-6">
             <div className="doctorCol bg-dark mt-4">
-            <h5 className="text-center text-light"><span className="colSpanBold">This query gives medical store id ,medical store name and doctor name assigned to particular patient id.</span></h5>
+            <h5 className="text-center text-light"><span className="colSpanBold">This  gives medical store id ,medical store name and doctor name assigned to particular patient id.</span></h5>
             <div className="text-center mt-3">
               <button className="btn dataSelectBtn" onClick={()=>setAuth2(!auth2)}>Click</button>
             </div>
@@ -206,7 +206,7 @@ const myFunc5=()=>{
 
           <div className="col-12 col-lg-6">
           <div className="doctorCol bg-dark mt-4">
-            <h5 className="text-center text-light"><span className="colSpanBold">This query  gives the total number of patients present in each type of ward. </span></h5>
+            <h5 className="text-center text-light"><span className="colSpanBold">This   gives the total number of patients present in each type of ward. </span></h5>
             <div className="text-center mt-3">
               <button className="btn dataSelectBtn" onClick={myFunc3}>Click</button>
             </div>
@@ -240,7 +240,7 @@ const myFunc5=()=>{
           </div>
           <div className="col-12 col-lg-6">
           <div className="doctorCol bg-dark mt-4">
-            <h5 className="text-center text-light"><span className="colSpanBold">This query gives the patient id,patient name whose having the minimum total cost amongst all the patients . </span></h5>
+            <h5 className="text-center text-light"><span className="colSpanBold">This  gives the patient id,patient name whose having the minimum total cost amongst all the patients . </span></h5>
             <div className="text-center mt-3">
               <button className="btn dataSelectBtn" onClick={myFunc4}>Click</button>
             </div>
@@ -274,7 +274,7 @@ const myFunc5=()=>{
           </div>
           <div className="col-12 col-lg-6">
           <div className="doctorCol bg-dark mt-4">
-            <h5 className="text-center text-light"><span className="colSpanBold">This query gives the doctor id and name whose age is greater than 40 and having rating of 5. </span></h5>
+            <h5 className="text-center text-light"><span className="colSpanBold">This  gives the doctor id and name whose age is greater than 40 and having rating of 5. </span></h5>
             <div className="text-center mt-3">
               <button className="btn dataSelectBtn" onClick={myFunc5}>Click</button>
             </div>
